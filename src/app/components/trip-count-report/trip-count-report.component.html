@@ -1,0 +1,61 @@
+<div class="wrapper">
+    <!-- Sidebar Holder -->
+    <nav id="sidebar">
+        <div class="form-group paddLR10 mtop15">
+            <input type="text" class="form-control" placeholder="Search">
+        </div>
+    </nav>
+
+    <!-- Page Content Holder -->
+    <div id="content">
+
+        <nav class="navbar navbar-default">
+            <div>
+                <div class="navbar-header">
+                    <button type="button" id="sidebarCollapseopen" class="btn navbar-btn">
+                        <i class="glyphicon glyphicon-align-left"></i>
+                    </button>
+                    <button type="button" id="sidebarCollapseclose" class="btn navbar-btn">
+                        <i class="glyphicon glyphicon-align-left"></i>
+                    </button>
+                </div>
+                <div class="btn-group pull-right mtop8">
+                    <button type="button" class="btn btn-primary">PDF</button>
+                    <button type="button" class="btn btn-primary">EXCEL</button>
+                    <button type="button" class="btn btn-primary" (click)="print();">PRINT</button>
+                </div>
+            </div>
+        </nav>
+       <div class="container-fluid">
+            <div>
+                <p class="titleheading">Trip Count Report</p>
+            </div>
+            <div id="print-section">
+                <div class="table-responsive">
+                    <table class="table table-bordered">
+                        <thead>
+                            <tr>
+                                <th>S.No.</th>
+                                <th colspan="2">Vehicle RTO</th>
+                                <th colspan="2">Location-Event Type</th>
+                                <th colspan="2">Date-Event Type</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>1</td>
+                                <td>fs12454ss</td>
+                                <td>Vijay nagar</td>
+                                <td>125452445</td>
+                                <td>fs12454ss</td>
+                                <td>Vijay nagar</td>
+                                <td>125452445</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+       </div>
+    </div>
+</div>
+

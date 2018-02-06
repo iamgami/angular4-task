@@ -1,0 +1,75 @@
+.Weblogo{
+  width: 80px;
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+.Weblogo1{
+  width: 150px;
+  margin-top: 20px;
+  margin-bottom: 10px;
+}
+.heading-title{
+  font-size: 18px;
+}
+.btn-center{
+  margin: auto;
+  text-align: center;
+  margin-top: 30px;
+}
+
+.navbar-nav {
+  margin-left: 13%;
+}
+.navbar-nav > li {
+  float: none;
+  display: inline-block;
+  margin-top: 25px;
+  font-size: 18px;
+  background: #38779c;
+  color: #fff;
+}
+.navbar-nav > li a{
+  color: #fff;
+}
+.navbar-nav>li>a{
+  padding-top: 10px;
+  padding-bottom: 10px;
+}
+.dropdown-menu li a{
+  padding-left: 10px;
+  padding-right: 10px;
+  padding-top: 2px;
+  padding-bottom: 2px;
+}
+
+.submenu a{
+  color: #000 !important;
+}
+.navbar-default .navbar-nav>.open>a, .navbar-default .navbar-nav>.open>a:focus, .navbar-default .navbar-nav>.open>a:hover{
+  background-color: #38779c;
+}
+.navbar-login
+{
+    width: 305px;
+    padding: 10px;
+    padding-bottom: 0px;
+}
+
+.navbar-login-session
+{
+    padding: 10px;
+    padding-bottom: 0px;
+    padding-top: 0px;
+}
+
+.icon-size
+{
+    font-size: 87px;
+}
+.navbar-login p
+{
+    color:#000;
+}
+.hide-nav{
+  visibility: hidden;
+}

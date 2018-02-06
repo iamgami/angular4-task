@@ -1,0 +1,292 @@
+<div id="homepage">
+    <div class="wrapper">
+        <!-- Sidebar Holder -->
+        <nav id="sidebar">
+            <div class="form-group paddLR10 mtop15">
+                <!-- <input type="date" class="form-control"> -->
+                <my-date-picker [options]="myDatePickerOptions" [(ngModel)]="Today_date"
+                (dateChanged)="onDateChanged($event)"></my-date-picker>
+            </div>
+            <br>
+            <div class="form-group paddLR10">
+                <input id="country" type="text" class="form-control validate filter-input" [(ngModel)]=query (keyup)=filter() placeholder="Enter Vehicle RTO Number">
+                <span id="searchclear" class="glyphicon glyphicon-remove-circle" (click)="resetInput()"></span>
+                <div class="autocomplete-suggestions" *ngIf="filteredList.length > 0">
+                    <ul *ngFor="let item of filteredList" class="unstyled centered">
+                        <li>
+                            <a (click)="select(item)">{{item}}</a>
+                        </li>
+                    </ul>
+                </div> 
+            </div>
+            <br>
+            <!-- <ul class="unstyled centered" *ngIf="showLiveFeedOption==true"  >
+                <li style="text-align: center;">
+                    <input class="styled-checkbox" id="styled-checkbox-1" type="checkbox" [(ngModel)]="selectZoneWard.checkboxLive" (change)="selectLiveFeed(selectZoneWard.checkboxLive)" >
+                    <label for="styled-checkbox-1" class="fs14">Show Live</label>
+                </li>
+            </ul> -->
+            
+            <!-- <div class="form-group paddLR10">
+                <select class="form-control" [(ngModel)]="zonelist" (change)="onSelectZone($event.target.value)">
+                    <option value="">Select Zone</option>
+                    <option *ngFor="let zonelist of getZonesList" value= {{zonelist.id}}>Zone {{zonelist.zone_number}} - {{zonelist.name}}</option>
+                </select>
+            </div>
+            <div class="form-group paddLR10">
+                <select class="form-control" [(ngModel)]="Wardslist" (change)="onSelectWards($event.target.value)">
+                    <option value="">Select Wards</option>
+                    <option *ngFor="let wardlist of getWardsList" value="{{wardlist.id}}">Ward {{wardlist.ward_number}} - {{wardlist.name}}</option>
+                </select>
+            </div>
+            <div class="form-group paddLR10">
+                <select class="form-control" [(ngModel)]="Shift" (change)="onSelectShift($event.target.value)">
+                    <option value="0">Morning</option>
+                    <option value="1">Evening</option>
+                </select>
+            </div>
+            <div class="form-group paddLR10">
+                <ss-multiselect-dropdown [options]="vehicleLists" [settings]="mySettings" [(ngModel)]="optionsModel" (ngModelChange)="playVehicle($event)"></ss-multiselect-dropdown>
+            </div>
+            <ul class="unstyled centered">
+                <li style="text-align: center;">
+                    <input class="styled-checkbox" id="styled-checkbox-1" type="checkbox" value="value1" [(ngModel)]="selectZoneWard.checkboxZone" (change)="switchZone(selectZoneWard.checkboxZone)">
+                    <label for="styled-checkbox-1" class="fs14">Show Zones</label>
+                </li>
+                <li style="text-align: center;">
+                    <input class="styled-checkbox" id="styled-checkbox-2" type="checkbox" value="value2" [(ngModel)]="selectZoneWard.checkboxWard" (change)="switchWard(selectZoneWard.checkboxWard)">
+                    <label for="styled-checkbox-2" class="fs14">Show Wards</label>
+                </li>
+            </ul> -->
+            <br>
+            <div class="form-group paddLR10">
+                Set Initial Speed
+            </div>
+            <input type="range" id="dd_range" min="0" max="9" value="8" step="1"
+                    #ref (change)="changeRange(ref.value)" >
+            <div class="paybtn">
+                <a *ngIf="play==true && reset==false" (click)="doPlay()" class="play_div fs30"><i class="fa fa-play play_btn" aria-hidden="true"></i> </a>
+
+                <a *ngIf="play==false && reset==false" (click)="doStop()" class="play_div fs26"><i class="fa fa-stop play_btn" aria-hidden="true"></i> </a>
+
+                <a *ngIf="forward && reset==false" (click)="doSkip()" class="play_div fs26"><i class="fa fa-fast-forward" aria-hidden="true"></i> </a>
+                <a *ngIf="reset==true" (click)="resetWholeMap()" class="play_div fs26">Reset</a>
+            </div>
+        </nav>
+
+        <!-- Page Content Holder -->
+        <div id="content">
+
+            <nav class="navbar navbar-default">
+                <div>
+                    <div class="navbar-header">
+                        <button type="button" id="sidebarCollapseopen" class="btn navbar-btn">
+                            <i class="glyphicon glyphicon-align-left"></i>
+                        </button>
+                        <button type="button" id="sidebarCollapseclose" class="btn navbar-btn">
+                            <i class="glyphicon glyphicon-align-left"></i>
+                        </button>
+                    </div>
+                </div>
+                <nav aria-label="breadcrumb" style="padding: 7px;margin-left: 50px;">
+                    <ol class="breadcrumb" >
+                        <li class="breadcrumb-item"><a href="javascript:void(0)">{{childPage}}</a></li>
+                        <li class="breadcrumb-item active" aria-current="page">{{parentPage}}</li>
+                    </ol>
+                </nav>
+            </nav>
+            <div class="container-fluid">
+                <div>
+                    <div id="googleMap" class="gmap"></div>
+                </div>
+            </div>
+            <div *ngIf="showLoader==true" style="width: 79%;height: 100vh;background: #000;position: absolute;top: 120px;opacity: 0.5;margin:auto;text-align:center;">
+                <img class="loadingimg" src="assets/modules/images/ajax-loader.gif" />
+            </div>
+            <div *ngIf="this.legendStatus == '1'" class="container-fluid" style="position: fixed; bottom: 20%; width: 15%; height: 100vh; background: #fff; min-height: 450px; max-height: 400px; opacity: 0.8;right:15px; border-radius:12px; padding:5px;">
+                <div class="pull-right" style="font-size: 28px;cursor:pointer;" (click)="closeLegend();" ><i>&times;</i></div>
+                <div class="row" >
+                    <div class="col-md-12" *ngIf="wardName.length==0 && vehicleLists.length==0" >
+                        <div class="col-md-12">
+                            <label class="vehicleListBold"><span class="fs14">IMC Zones</span></label>
+                        </div>
+                        <div class="row" style="padding-left:20px;">
+                            <table>
+                                <tr *ngFor="let znames of zoneName">
+                                    <td>
+                                        <div class="pull-left">
+                                                <div class="margin-5">
+                                                    <span [ngStyle]="{'background-color': znames.color, 'font-size': '18px'}" class="zoneColorTag"></span>
+                                                </div>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <div class="fw900 lineheightlist zoneListColor">
+                                            <span style="font-size: 12px;">{{znames.name | titlecase}}</span>
+                                        </div>
+                                    </td>
+                                </tr>
+                            </table>
+                        </div>
+                        </div>
+                    <div class="col-md-12" *ngIf="wardName.length>0 && vehicleLists.length==0">
+                        <div class="col-md-12">
+                            <label class="vehicleListBold"><span class="fs14">Zone {{selectedZoneNo}} - {{selectedZone}}</span><br /><span class="fs13">Wards</span></label>
+
+                        </div>
+                       
+                        <div class="row" style="padding-left:20px;" >
+                            <table>
+                                <tr *ngFor="let ward of wardColorAndName">
+                                    <td>
+                                        <div class="pull-left">
+                                            <div  class="margin-5">
+                                                <span [ngStyle]="{'background-color': ward.color_code, 'font-size': '18px' }" class="zoneColorTag"></span>
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <div>
+                                            <div  class="fw900 lineheightlist">
+                                                <span style="font-size: 12px;">{{ward.ward_name | titlecase}}</span>
+                                            </div>
+                                        </div>
+                                    </td>
+                                </tr>
+                            </table>
+                        </div>
+                    </div>
+
+                    <div class="col-md-12" *ngIf="vehicleLists.length>0">
+                        <div class="col-md-12">
+                            <label class="vehicleListBold"><span class="fs14">Zone {{selectedZoneNo}} - {{selectedZone}}<br />Ward {{selectedWardNo}} - {{selectedWard}}</span><br /><span class="fs13">Deployed Vehicles</span></label>
+                        </div>
+                        <div class="row" style="padding-left:20px;" >
+                            <table>
+                                <tr *ngFor="let vehicle of vehicleWithColor">
+                                    <td>
+                                        <div class="pull-left">
+                                            <div  class="margin-5">
+                                                <span [ngStyle]="{'background-color': vehicle.vehicle_color, 'font-size': '18px'}" class="zoneColorTag"></span>
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <div>
+                                            <div class="fw900 lineheightlist">
+                                                <span style="font-size: 12px;">Planned Route - {{vehicle.vehicle_name}}</span>
+                                            </div>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <div class="pull-left">
+                                            <div  class="margin-5">
+                                                <span style="background-color:red;font-size:18px" class="zoneColorTag"></span>
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <div>
+                                            <div class="fw900 lineheightlist">
+                                                <span style="font-size: 12px;">Actual Movement</span>
+                                            </div>
+                                        </div>
+                                    </td>
+                                </tr>
+
+                                <tr>
+                                    <td>
+                                        <div class="pull-left">
+                                            <div  class="margin-5">
+                                                <span style=" background-image: url('assets/red-flag.png');font-size:18px" class="zoneImg"></span>
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <div>
+                                            <div class="fw900 lineheightlist">
+                                                <span style="font-size: 12px;">Speed More then 40Kmph</span>
+                                            </div>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <div class="pull-left">
+                                            <div  class="margin-5">
+                                                <span style=" background-image: url('/assets/modules/images/pink_stop.png');font-size:18px" class="zoneImg"></span>
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <div>
+                                            <div class="fw900 lineheightlist">
+                                                <span style="font-size: 12px;">Stoppage Duration Max 5 minutes</span>
+                                            </div>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <div class="pull-left">
+                                            <div  class="margin-5">
+                                                <span style=" background-image: url('/assets/modules/images/yellow_stop.png');font-size:18px" class="zoneImg"></span>
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <div>
+                                            <div class="fw900 lineheightlist">
+                                                <span style="font-size: 12px;">Stoppage Duration Max 10 minutes</span>
+                                            </div>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <div class="pull-left">
+                                            <div  class="margin-5">
+                                                <span style=" background-image: url('/assets/modules/images/red_stop.png');font-size:18px" class="zoneImg"></span>
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <div>
+                                            <div class="fw900 lineheightlist">
+                                                <span style="font-size: 12px;">Stoppage Duration More than 15 minutes</span>
+                                            </div>
+                                        </div>
+                                    </td>
+                                </tr>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div *ngIf="this.legendStatus == '1'"  matTooltip="View Legend" class="pull-right"  (click)="openLegend();">
+                <a href="javascript:void(0)"> 
+                   <img src="assets/modules/images/close_legend.png" title="Close Legend" alt="Close Legend">
+                </a>
+                <!-- <button matTooltip="View Legend" type="button" class="btn" style="position: fixed;
+                padding: 12px 15px;
+                border-radius: 50%;
+                bottom: 30px;
+                right: 60px;
+                background-color: #292929;">
+                    <i class="glyphicon glyphicon-eye-open" style="color: #ebebeb;
+                font-size: 22px;"></i>
+                </button> -->
+            </div>
+            <div *ngIf="this.legendStatus == '0'"  matTooltip="View Legend" class="pull-right"  (click)="openLegend();">
+                <a href="javascript:void(0)"> 
+                    <img src="assets/modules/images/open_legend.png" title="Open Legend" alt="Open Legend">
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+

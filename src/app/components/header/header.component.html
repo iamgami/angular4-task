@@ -1,0 +1,109 @@
+<!-- BEGIN #header -->
+<header id="header">
+        <nav class="navbar navbar-default" role="navigation">
+            <div class="container-fluid">
+                <!-- Brand and toggle get grouped for better mobile display -->
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                        <span class="sr-only">Toggle navigation</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                </div>
+
+                <!-- Collect the nav links, forms, and other content for toggling -->
+                <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                    <div style="position: absolute;
+                    left: 30px;">
+                        <img src="assets/modules/images/imc_logo.820ab42e.jpg" class="Weblogo">
+                    </div>
+                    <ul class="nav navbar-nav" style="height: 100px;" >
+                        <li class="dropdown" *ngIf="isLogin == true">
+                            <a class="dropdown-toggle submenu" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">PlayBack <b class="caret"></b></a>
+                            <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+                                <li class="submenu"><a [routerLink]="['home']" >D2D Collection</a></li>
+                                <li class="submenu"><a [routerLink]="['twin-bin']">Twin Bin Collection</a></li>
+                                <li class="submenu"><a [routerLink]="['date-wise']">D2D Collection By Date</a></li>
+                            </ul>
+                        </li>
+                        <li><a [routerLink]="['maps']">GIS Layers</a></li>
+                        <li class="dropdown">
+                            <a class="dropdown-toggle submenu" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">Reports <b class="caret"></b></a>
+                            <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+                                <li class="submenu"><a [routerLink]="['vehicle-movement-report']">Vehicle Movement</a></li>
+                                <li class="submenu"><a [routerLink]="['driver-performance-report']">Driver Performance</a></li>
+                                <li class="submenu"><a [routerLink]="['vehicle-deployment-report']">Vehicle Deployment</a></li>
+                                <li class="submenu"><a [routerLink]="['gps-log-report']">GPS Log Report</a></li>
+
+                                <li *ngIf="isLogin == true" class="submenu"><a [routerLink]="['monthly-trip-report']">Monthly Trip</a></li>
+                                <li *ngIf="isLogin == true" class="submenu"><a [routerLink]="['ward-wise-generation-report']">Ward Wise Generation</a></li>
+                                <li *ngIf="isLogin == true" class="submenu"><a [routerLink]="['trip-count-report']">Trip Count</a></li>
+                                <li *ngIf="isLogin == true" class="submenu"><a [routerLink]="['twin-bin-emptied-report']">Twin Bin Emptied</a></li>
+                                <li *ngIf="isLogin == true" class="submenu"><a [routerLink]="['processed-waste-pu-report']">Processed Waste PU</a></li>
+                                <li *ngIf="isLogin == true" class="submenu"><a [routerLink]="['processed-waste-mrf-report']">Processed Waste MRF</a></li>
+                                <li *ngIf="isLogin == true" class="submenu"><a [routerLink]="['desludging-vehicle-report']">Desludging Vehicle Report</a></li>
+                                <li *ngIf="isLogin == true" class="submenu"><a [routerLink]="['rwas-report']">RWAs</a></li>
+                                <li *ngIf="isLogin == true" class="submenu"><a [routerLink]="['poi-report']">POI</a></li>
+                            </ul>
+                        </li>
+                        <li class="dropdown">
+                            <a class="dropdown-toggle submenu" id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">Live <b class="caret"></b></a>
+                            <ul class="dropdown-menu" aria-labelledby="dropdownMenu2">
+                                <li class="submenu"><a [routerLink]="['live-for-citizen']">Live For Citizen</a></li>
+                                <li class="submenu" *ngIf="isLogin == true"><a [routerLink]="['live-for-operator']">Live For Operator</a></li>
+                            </ul>
+                        </li>
+                    </ul>
+                    <div class="pull-right" *ngIf="isLogin == true">
+                        <ul class="nav pull-right" style="margin-top: 15px;">
+                            <li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown">Welcome, {{currentUser.firstname}} <b class="caret"></b></a>
+                                <ul class="dropdown-menu" style="left: -167px;">
+                                    <li>
+                                        <div class="navbar-login">
+                                            <div class="row">
+                                                <div class="col-lg-4">
+                                                    <p class="text-center">
+                                                        <span class="glyphicon glyphicon-user icon-size"></span>
+                                                    </p>
+                                                </div>
+                                                <div class="col-lg-8">
+                                                    <p class="text-left"><strong> <h5>Hi {{currentUser.firstname}}!</h5></strong></p>
+                                                    <p class="text-left small">{{currentUser.email}}</p>
+                                                    <!-- <p class="text-left">
+                                                        <a href="#" class="btn btn-primary btn-block btn-sm">Update Profile</a>
+                                                    </p>  -->
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </li>
+                                    <li class="divider"></li>
+                                    <li>
+                                        <div class="navbar-login navbar-login-session">
+                                            <div class="row">
+                                                <div class="col-lg-12">
+                                                    <p>
+                                                        <a href="javascript:void(0)"  (click)="logout();"  class="btn btn-danger btn-block">Logout</a>
+                                                    </p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </div>
+                    <ul class="nav navbar-nav navbar-right"  *ngIf="isLogin == false">
+                        <li><a [routerLink]="['login']">Login</a></li>
+                    </ul>
+                    <!-- <div style="position: absolute;
+                    right: 30px;">
+                        <img src="assets/modules/images/SWLogo.jpg" class="Weblogo1">
+                    </div> -->
+                </div><!-- /.navbar-collapse -->
+            </div><!-- /.container-fluid -->
+        </nav>
+</header>
+
+
+

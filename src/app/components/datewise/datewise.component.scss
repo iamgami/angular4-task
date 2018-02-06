@@ -1,0 +1,336 @@
+.fs12{
+    font-size: 12px !important;
+}
+.fs13{
+    font-size: 13px !important;
+}
+.fs14{
+    font-size: 14px !important;
+}
+.zoneColorTag{
+    width: 9.9px !important;
+    height: 9.9px;
+    display: block !important;
+    border-radius: 5px !important;
+}
+.lineheightlist{
+    line-height: 18px;
+}
+.margin-5{
+    margin: 5px !important;
+}
+.fw900{
+    font-weight: 900 !important;
+}
+.mtop20{
+    margin-top: 20px;
+}
+.paybtn{
+    text-align: center;
+    margin-top: 20px;
+}
+.paddLR10{
+    padding-left: 10px;
+    padding-right: 10px;
+}
+.gmap{
+  width: 100%;
+  height: 75vh;
+}
+.sidebar {
+    //width: 240px;
+    z-index: 1;
+    //right: 14px;
+    background: #eee;
+    //overflow-x: hidden;
+    padding: 8px 0;
+    height: 75vh;
+    //position: absolute;
+}
+
+.styled-checkbox {
+    position: absolute;
+    opacity: 0;
+  }
+  .styled-checkbox + label {
+    position: relative;
+    cursor: pointer;
+    padding: 0;
+    font-size: 18px;
+  }
+  .styled-checkbox + label:before {
+    content: "";
+    margin-right: 10px;
+    margin-top: -2px;
+    display: inline-block;
+    vertical-align: text-top;
+    width: 20px;
+    height: 20px;
+    background: white;
+  }
+  .styled-checkbox:hover + label:before {
+    background: #3dbcf6;
+  }
+  .styled-checkbox:focus + label:before {
+    -webkit-box-shadow: 0 0 0 3px rgba(0, 0, 0, 0.12);
+            box-shadow: 0 0 0 3px rgba(0, 0, 0, 0.12);
+  }
+  .styled-checkbox:checked + label:before {
+    background: #3dbcf6;
+  }
+  .styled-checkbox:disabled + label {
+    color: #b8b8b8;
+    cursor: auto;
+  }
+  .styled-checkbox:disabled + label:before {
+    -webkit-box-shadow: none;
+            box-shadow: none;
+    background: #ddd;
+  }
+  .styled-checkbox:checked + label:after {
+    content: "";
+    position: absolute;
+    left: 5px;
+    top: 9px;
+    background: white;
+    width: 2px;
+    height: 2px;
+    -webkit-box-shadow: 2px 0 0 white, 4px 0 0 white, 4px -2px 0 white, 4px -4px 0 white, 4px -6px 0 white, 4px -8px 0 white;
+            box-shadow: 2px 0 0 white, 4px 0 0 white, 4px -2px 0 white, 4px -4px 0 white, 4px -6px 0 white, 4px -8px 0 white;
+    -webkit-transform: rotate(45deg);
+            transform: rotate(45deg);
+  }
+
+  .unstyled {
+    margin: 0;
+    padding: 0;
+    list-style-type: none;
+  }
+
+  .centered {
+    margin: auto;
+  }
+
+  .title {
+    text-align: center;
+    color: #4571ec;
+  }
+
+
+  .dropdown-inline{
+    width: 100% !important;
+    text-align: left !important;
+  }
+
+
+.Weblogo{
+  width: 80px;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  margin-left: 40px;
+}
+.heading-title{
+  font-size: 18px;
+}
+.mtop30{
+  margin-top: 30px;
+}
+
+
+
+/*
+    DEMO STYLE
+*/
+
+.navbar {
+    padding: 0;
+    background: #fff;
+    border: none;
+    border-radius: 0;
+    margin-top: -28px;
+    box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+.navbar-btn {
+    box-shadow: none;
+    outline: none !important;
+    border: none;
+}
+
+/* ---------------------------------------------------
+    SIDEBAR STYLE
+----------------------------------------------------- */
+.wrapper {
+    display: flex;
+    align-items: stretch;
+}
+
+#sidebar {
+    min-width: 250px;
+    max-width: 250px;
+    background: #292929;
+    color: #fff;
+    transition: all 0.3s;
+}
+
+#sidebar.active {
+    margin-left: -250px;
+}
+
+// #sidebar .sidebar-header {
+//     padding: 20px;
+//     background: #6d7fcc;
+// }
+
+#sidebar ul.components {
+    padding: 20px 0;
+    border-bottom: 1px solid #47748b;
+}
+
+#sidebar ul p {
+    color: #fff;
+    padding: 10px;
+}
+
+#sidebar ul li a {
+    padding: 10px;
+    font-size: 1.1em;
+    display: block;
+}
+#sidebar ul li a:hover {
+    color: #7386D5;
+    background: #fff;
+}
+
+#sidebar ul li.active > a, a[aria-expanded="true"] {
+    color: #fff;
+    background: #6d7fcc;
+}
+
+
+a[data-toggle="collapse"] {
+    position: relative;
+}
+
+a[aria-expanded="false"]::before, a[aria-expanded="true"]::before {
+    content: '\e259';
+    display: block;
+    position: absolute;
+    right: 20px;
+    font-family: 'Glyphicons Halflings';
+    font-size: 0.6em;
+}
+a[aria-expanded="true"]::before {
+    content: '\e260';
+}
+
+
+/* ---------------------------------------------------
+    CONTENT STYLE
+----------------------------------------------------- */
+#content {
+    padding: 20px;
+    min-height: 100vh;
+    transition: all 0.3s;
+    // width: 100%;
+    width: calc(100% - 250px);
+}
+.content {
+    width: 100% !important;
+}
+#sidebarCollapseclose{
+    display: none;
+}
+
+/* ---------------------------------------------------
+    MEDIAQUERIES
+----------------------------------------------------- */
+@media (max-width: 768px) {
+    #sidebar {
+        margin-left: -250px;
+    }
+    #sidebar.active {
+        margin-left: 0;
+    }
+    #sidebarCollapse span {
+        display: none;
+    }
+}
+
+.mtop15{
+  margin-top: 15px;
+}
+:host /deep/ ss-multiselect-dropdown .dropdown-toggle {
+    max-width: 230px;
+    min-width: 230px;
+    text-align: left;
+}
+:host /deep/ .dropdown-toggle .caret{
+    position: absolute;
+    left: 90%;
+    top: 45%;
+}
+.fs30{
+    font-size: 30px;
+}
+.fs26{
+    font-size: 26px;
+}
+.loadingimg{
+    margin-top: 250px;
+}
+.firstHeading{
+    font-size: 18px;
+}
+
+.map-label-ward{
+    font-size: 1.0vw;
+}
+.zoneListColor{
+    line-height: 1.1 !important;
+}
+.vehicleListBold {
+    font-weight: bolder;
+    color: #000000;
+}
+
+.zoneImg{
+    width: 25.9px !important;
+    height: 23.9px;
+    display: block !important;
+    border-radius: 5px !important;
+}
+.autocomplete-suggestions{ 
+    border: 1px solid #999;
+    background: #fff !important;
+    cursor: default;
+    overflow: auto;
+    max-height: 300px;
+}
+.autocomplete-suggestion{ 
+    padding: 10px 5px;
+    font-size: 1.2em;
+    white-space: nowrap;
+    overflow: hidden;
+}
+.autocomplete-selected{ 
+    background: #f0f0f0;
+}
+.autocomplete-suggestions strong{ 
+    font-weight: normal;
+    color: #3399ff;
+}
+#searchinput {
+    width: 200px;
+}
+#searchclear {
+    position: relative;
+    right: 0;
+    top: -24px;
+    bottom: 0;
+    height: 14px;
+    font-size: 14px;
+    cursor: pointer;
+    color: #ccc;
+    left: 210px;
+}

@@ -1,0 +1,111 @@
+<div class="wrapper">
+    <!-- Sidebar Holder -->
+    <nav id="sidebar">
+        <!--<div class="form-group paddLR10 mtop15">
+            <input type="text" class="form-control" placeholder="Search">
+        </div>-->
+        <div class="form-group paddLR10 mtop15">
+            <label>Zone</label>
+            <select [(ngModel)]="selectedZone" class="form-control">
+                <option value="">Select Zone</option>
+                <option *ngFor="let c of getZonesList" [ngValue]="c.id">{{c.name}}</option>
+            </select>
+        </div>
+        <div class="form-group paddLR10 mtop15">
+            <label>Month</label>
+            <select [(ngModel)]="selectedMonth" class="form-control">
+                <option *ngFor="let c of monthdetails" [ngValue]="c.id">{{c.name}}</option>
+            </select>
+        </div>
+        <div class="form-group paddLR10 mtop15">
+            <label>Year</label>
+            <select [(ngModel)]="selectedYear" class="form-control">
+                <option *ngFor="let c of yeardetails" [ngValue]="c">{{c}}</option>
+            </select>
+        </div>
+        <div class="form-group paddLR10 mtop15 text-center">
+            <button (click)="driverPerformanceReport();" class="btn btn-primary">Submit</button>
+        </div>
+    </nav>
+
+    <!-- Page Content Holder -->
+    <div id="content">
+
+        <nav class="navbar navbar-default">
+            <div>
+                <div class="navbar-header">
+                    <button type="button" id="sidebarCollapseopen" class="btn navbar-btn">
+                        <i class="glyphicon glyphicon-align-left"></i>
+                    </button>
+                    <button type="button" id="sidebarCollapseclose" class="btn navbar-btn">
+                        <i class="glyphicon glyphicon-align-left"></i>
+                    </button>
+                </div>
+                <!--<div class="btn-group pull-right mtop8">
+                    <button type="button" class="btn btn-primary">PDF</button>
+                    <button type="button" class="btn btn-primary">EXCEL</button>
+                    <button type="button" class="btn btn-primary" (click)="print();">PRINT</button>
+                </div>-->
+            </div>
+        </nav>
+       <div class="container-fluid">
+            <div>
+                <p class="titleheading">Driver Performance Report</p>
+            </div>
+            <div id="print-section">
+                <div class="table-responsive">
+                    <table class="table table-striped table-bordered" id="datatable">
+                        <thead>
+                            <tr>
+                                <th>S.No.</th>
+                                <th>Vehicle RTO</th>
+                                <th>Zone No.</th>
+                                <th>Ward No.</th>
+                                <th>Driver Name</th>
+                                <th>Vehicle Average</th>
+                                <th>Marks (20)</th>
+                                <th>Maintenance and servicing</th>
+                                <th>Marks (10)</th>
+                                <th>Attencance</th>
+                                <th>Marks (10)</th>
+                                <th>Late starting status</th>
+                                <th>Marks (5)</th>
+                                <th>Speed Violations</th>
+                                <th>Marks (5)</th>
+                                <th>Total Marks (50)</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr *ngFor="let item of getPerformanceReport;  let i = index">
+                                <td>{{i+1}}</td>
+                                <td>{{item.vehicle_rto}}</td>
+                                <td>{{item.zone_no}}</td>
+                                <td>{{item.ward_no}}</td>
+                                <td>{{item.driver_name}}</td>
+                                <td>{{item.vehicle_average}}</td>
+                                <td>{{item.marks_vehicle_average}}</td>
+                                <td>{{item.maintainance_servicing}}</td>
+                                <td>{{item.marks_maintainance_servicing}}</td>
+                                <td>{{item.attendance}}</td>
+                                <td>{{item.marks_attendance}}</td>
+                                <td>{{item.late_starting_status}}</td>
+                                <td>{{item.marks_late_starting_status}}</td>
+                                <td>{{item.speed_violation}}</td>
+                                <td>{{item.marks_speed_violation}}</td>
+                                <td>{{item.total_marks}}</td>
+                            </tr>
+                        </tbody>
+                        <!--<tfoot>
+                        <tr>
+                            <td colspan="15">
+                                <mfBootstrapPaginator [rowsOnPageSet]="[5,10,25]"></mfBootstrapPaginator>
+                            </td>
+                        </tr>
+                        </tfoot>-->
+                    </table>
+                </div>
+            </div>
+       </div>
+    </div>
+</div>
+

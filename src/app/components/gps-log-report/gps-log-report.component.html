@@ -1,0 +1,106 @@
+<div class="wrapper">
+    <!-- Sidebar Holder -->
+    <nav id="sidebar">
+        <!--<div class="form-group paddLR10 mtop15">
+            <input type="text" class="form-control" placeholder="Search">
+        </div>-->
+        <div class="form-group paddLR10 mtop15">
+          <label>Select Date</label>
+            <my-date-picker [options]="myDatePickerOptions" [(ngModel)]="Today_date"
+            (dateChanged)="onDateChanged($event)"></my-date-picker>
+        </div>
+        <div class="form-group paddLR10 mtop15">
+            <label>Zone</label>
+            <select [(ngModel)]="selectedZone" class="form-control" (ngModelChange)="onSelectZone($event);">
+                <option value="">Select Zone</option>
+                <option *ngFor="let c of getZonesList" [ngValue]="c.id" >{{c.name}}</option>
+            </select>
+        </div>
+        <div class="form-group paddLR10 mtop15">
+            <label>Ward</label>
+            <select [(ngModel)]="selectedWard" class="form-control" (ngModelChange)="onSelectWard($event);">
+                <option value="">Select Ward</option>
+                <option *ngFor="let c of getWardsList" [ngValue]="c.id">{{c.name}}</option>
+            </select>
+        </div>
+        <div class="form-group paddLR10">
+            <label>Shift</label>
+            <select class="form-control" [(ngModel)]="ShiftId" (change)="onSelectShift($event.target.value)">
+                <option value="0">Morning</option>
+                <option value="1">Evening</option>
+            </select>
+        </div>
+        <div class="form-group paddLR10 mtop15">
+            <label>Vehicle</label>
+             <!--<ss-multiselect-dropdown [options]="vehicleLists" [settings]="mySettings" [(ngModel)]="optionsModel" (ngModelChange)="selectVehicles($event)"></ss-multiselect-dropdown>-->
+            <select [(ngModel)]="selectedVehicleImei" class="form-control" (ngModelChange)="onSelectvehicle($event)">
+                <option value="">Select Vehicle</option>
+                <option *ngFor="let c of getVehiclesList" [ngValue]="c">{{c.registration_number}}</option>
+            </select>
+        </div>
+
+        <div class="form-group paddLR10 mtop15 text-center">
+            <button (click)="vehicleMovement();" class="btn btn-primary">Submit</button>
+        </div>
+    </nav>
+
+    <!-- Page Content Holder -->
+    <div id="content">
+
+        <nav class="navbar navbar-default">
+            <div>
+                <div class="navbar-header">
+                    <button type="button" id="sidebarCollapseopen" class="btn navbar-btn">
+                        <i class="glyphicon glyphicon-align-left"></i>
+                    </button>
+                    <button type="button" id="sidebarCollapseclose" class="btn navbar-btn">
+                        <i class="glyphicon glyphicon-align-left"></i>
+                    </button>
+                </div>
+                <!--<div class="btn-group pull-right mtop8">
+                    <button type="button" class="btn btn-primary">PDF</button>
+                    <button type="button" class="btn btn-primary">EXCEL</button>
+                    <button type="button" class="btn btn-primary" (click)="print()">PRINT</button>
+                </div>-->
+            </div>
+        </nav>
+       <div class="container-fluid">
+            <div *ngIf="showLoader==true" style="width: 79%;height: 100vh;background: #000;position: absolute;top: 120px;opacity: 0.5;margin:auto;text-align:center;">
+                <img class="loadingimg" src="assets/modules/images/ajax-loader.gif" />
+            </div>
+            <div *ngIf="showLoader==false">
+                <p class="titleheading">GPS Log Report </p>
+                <div  *ngIf="showImeiStatus" >
+                  <p >Vehicle RTO : {{showVehicleRegisterNo}} , IMEI : {{selectedVehicleInfo.imei}}</p>
+                  <p >Zone No :  {{showZoneNo}} Ward No : {{showWardNo}}</p>
+                  <p>Shift : <span *ngIf="showShift==0" >Morning</span>
+                                      <span *ngIf="showShift==1">Evening</span>
+                  </p>
+                </div>
+            </div>          
+            <div id="print-section" *ngIf="showLoader==false">
+                <div class="table-responsive" >
+                    <table class="table table-bordered" id="datatable">
+                        <thead>
+                            <tr>
+                                <th>S.No.</th>
+                                <th>Date & Time</th>
+                                <th>Coordinates</th>
+                                <th> Speed</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr *ngFor="let gps of gpslogReport;let i=index" >
+                                <th>{{i+1}}</th>
+                                <th>{{gps.datetime}}</th>
+                                <th>{{gps.lat | number : '1.2-6'}} {{gps.lng | number : '1.2-6'}}</th>
+                                <th> {{gps.speed}} km/hr</th>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+       </div>
+    </div>
+</div>
+

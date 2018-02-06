@@ -1,0 +1,190 @@
+
+
+<div class="wrapper">
+    <!-- Sidebar Holder -->
+    <nav id="sidebar">
+        <div class="form-group paddLR10 mtop15">
+            <select class="form-control" [(ngModel)]="zonelist" (change)="onSelectZone($event.target.value)">
+                <option value="">Select Zone</option>
+                <option value="">Select All</option>
+                <option *ngFor="let zonelist of getZonesList" value= {{zonelist.id}}>Zone {{zonelist.zone_number}} - {{zonelist.name}}</option>
+            </select>
+        </div>
+        <div class="form-group paddLR10">
+            <select class="form-control" [(ngModel)]="Wardslist" (change)="onSelectWard($event.target.value)">
+                <option value="">Select Wards</option>
+                <option *ngFor="let ward of getWardsList"  value="{{ward.id}}">Ward {{ward.ward_number}} - {{ward.name}}</option>
+            </select>
+        </div>
+        <div class="form-group paddLR10">
+            <input class="styled-checkbox" id="styled-checkbox-all" type="checkbox" [(ngModel)]="selectAllCheckBox.selectAll" (change)="selectAllEffect(selectAllCheckBox.selectAll)">
+            <label for="styled-checkbox-all">Show All</label>
+        </div>
+        <div class="form-group paddLR10">
+            <input class="styled-checkbox" id="styled-checkbox-1" type="checkbox" value="value1" [(ngModel)]="selectAllCheckBox.checkboxGvp" (change)="switchEffect(selectAllCheckBox.checkboxGvp)">
+            <label for="styled-checkbox-1" class="fs12 fw100">GVPs <span><img src="assets/modules/images/icons/gvp.png" class="listicon"></span>[{{resultGvp}}]</label>
+        </div>
+        <div class="form-group paddLR10">
+            <input class="styled-checkbox" ng-true-value="true" ng-false-value="false" id="styled-checkbox-2" type="checkbox" value="value1" [(ngModel)]="selectAllCheckBox.checkboxRwa" (change)="switchEffect(selectAllCheckBox.checkboxRwa)">
+            <label for="styled-checkbox-2" class="fs12 fw100">RWAs <span><img src="assets/modules/images/icons/rwa.png" class="listicon"></span>[{{resultRwa}}]</label>
+        </div>
+        <!-- <div class="form-group paddLR10">
+            <input class="styled-checkbox"  ng-true-value="true" ng-false-value="false" id="styled-checkbox-3" type="checkbox"  value="value1" [(ngModel)]="selectAllCheckBox.checkboxbulk" (change)="switchEffect(selectAllCheckBox.checkboxbulk)" >
+            <label for="styled-checkbox-3" class="fs12 fw100">Bulk Generators</label>
+        </div> -->
+        <div class="form-group paddLR10">
+            <input class="styled-checkbox"  ng-true-value="true" ng-false-value="false"  id="styled-checkbox-4" type="checkbox" value="value1"  [(ngModel)]="selectAllCheckBox.checkboxCommercial" (change)="switchEffect(selectAllCheckBox.checkboxCommercial)">
+            <label for="styled-checkbox-4" class="fs12 fw100">Commercial Areas <span><img src="assets/modules/images/icons/commercial.png" class="listicon"></span> [{{commercialTotal}}]</label>
+        </div>
+        <div class="form-group paddLR10">
+            <input class="styled-checkbox"  ng-true-value="true" ng-false-value="false" id="styled-checkbox-5" type="checkbox" value="value1" [(ngModel)]="selectAllCheckBox.checkboxCtpt" (change)="switchEffect(selectAllCheckBox.checkboxCtpt)">
+            <label for="styled-checkbox-5" class="fs12 fw100">CT/PTs <span><img src="assets/modules/images/icons/ct_pt.png" class="listicon"></span> [{{resultCtpt}}]</label>
+        </div>
+        <div class="form-group paddLR10">
+            <input class="styled-checkbox"  ng-true-value="true" ng-false-value="false" id="styled-checkbox-6" type="checkbox" value="value1" [(ngModel)]="selectAllCheckBox.checkboxPetrol" (change)="switchEffect(selectAllCheckBox.checkboxPetrol)">
+            <label for="styled-checkbox-6" class="fs12 fw100">Petrol Pumps<span><img src="assets/modules/images/icons/petrol-pt.png" class="listicon"></span>[{{resultPetrol}}]</label>
+        </div>
+        <div class="form-group paddLR10">
+            <input class="styled-checkbox"  ng-true-value="true" ng-false-value="false" id="styled-checkbox-7" type="checkbox" value="value1" [(ngModel)]="selectAllCheckBox.checkboxCitypark" (change)="switchEffect(selectAllCheckBox.checkboxCitypark)">
+            <label for="styled-checkbox-7"  ng-true-value="true" ng-false-value="false" class="fs12 fw100">City Parks<span><img src="assets/modules/images/icons/citypark.png" class="listicon"></span> [{{cityParkTotal}}]</label>
+        </div>
+        <!-- <div class="form-group paddLR10">
+            <input class="styled-checkbox"  ng-true-value="true" ng-false-value="false" id="styled-checkbox-8" type="checkbox" value="value1" [(ngModel)]="selectAllCheckBox.checkboxODspot" (change)="switchEffect(selectAllCheckBox.checkboxODspot)">
+            <label for="styled-checkbox-8"  class="fs12 fw100" >OD Spots</label>
+        </div> -->
+        <!-- <div class="form-group paddLR10">
+            <input class="styled-checkbox"  ng-true-value="true" ng-false-value="false" id="styled-checkbox-9" type="checkbox" value="value1"  [(ngModel)]="selectAllCheckBox.checkboxSchoolHos" (change)="switchEffect(selectAllCheckBox.checkboxSchoolHos)">
+            <label for="styled-checkbox-9" class="fs12 fw100">Schools/Hospitals <span><img src="assets/modules/images/school.svg" class="listicon"></span></label>
+        </div> -->
+        <!-- <div class="form-group paddLR10">
+            <input class="styled-checkbox"  ng-true-value="true" ng-false-value="false" id="styled-checkbox-10" type="checkbox" value="value1"  [(ngModel)]="selectAllCheckBox.checkboxHoarding" (change)="switchEffect(selectAllCheckBox.checkboxHoarding)">
+            <label for="styled-checkbox-10" class="fs12 fw100">Hoardings</label>
+        </div> -->
+        <div class="form-group paddLR10">
+            <input class="styled-checkbox"  ng-true-value="true" ng-false-value="false" id="styled-checkbox-11" type="checkbox" value="value1" [(ngModel)]="selectAllCheckBox.checkboxStreetplay" (change)="switchEffect(selectAllCheckBox.checkboxStreetplay)">
+            <label for="styled-checkbox-11" class="fs12 fw100">Street Plays <span><img src="assets/modules/images/icons/street-play.png" class="listicon"></span> [{{resultStreetplay}}]</label>
+        </div>
+        <div class="form-group paddLR10">
+            <input class="styled-checkbox"  ng-true-value="true" ng-false-value="false" id="styled-checkbox-12" type="checkbox" value="value1"  [(ngModel)]="selectAllCheckBox.checkboxWallpainting" (change)="switchEffect(selectAllCheckBox.checkboxWallpainting)">
+            <label for="styled-checkbox-12" class="fs12 fw100">Wall Paintings</label>
+        </div>
+        <div class="form-group paddLR10">
+            <input class="styled-checkbox"  ng-true-value="true" ng-false-value="false" id="styled-checkbox-13" type="checkbox" value="value1" [(ngModel)]="selectAllCheckBox.checkboxOwc" (change)="switchEffect(selectAllCheckBox.checkboxOwc)">
+            <label for="styled-checkbox-13" class="fs12 fw100">Bulk Generators<span><img src="assets/modules/images/icons/owc.png" class="listicon"></span>  [{{resultOwc}}]</label>
+        </div>
+        <div class="form-group paddLR10">
+            <input class="styled-checkbox"  ng-true-value="true" ng-false-value="false" id="styled-checkbox-14" type="checkbox" value="value1" [(ngModel)]="selectAllCheckBox.checkboxTwinbin" (change)="switchEffect(selectAllCheckBox.checkboxTwinbin)">
+            <label for="styled-checkbox-14" class="fs12 fw100">Twin-Bin<span><img src="assets/modules/images/icons/Twin-bin.png" class="listicon"></span> [{{resultTwinbin}}]</label>
+        </div>
+    </nav>
+
+    <!-- Page Content Holder -->
+    <div id="content">
+
+        <nav class="navbar navbar-default">
+            <div>
+                <div class="navbar-header">
+                    <button type="button" id="sidebarCollapseopen" class="btn navbar-btn">
+                        <i class="glyphicon glyphicon-align-left"></i>
+                    </button>
+                    <button type="button" id="sidebarCollapseclose" class="btn navbar-btn">
+                        <i class="glyphicon glyphicon-align-left"></i>
+                    </button>
+                </div>
+                <nav aria-label="breadcrumb" style="padding: 7px;margin-left: 50px;">
+                    <ol class="breadcrumb" >
+                        <li class="breadcrumb-item active" aria-current="page">{{parentPage}}</li>
+                    </ol>
+                </nav>
+            </div>
+        </nav>
+        <div>
+            <div id="googleMap" class="gmap"></div>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+
+
+
+<!-- <div id="homepage">
+    <div class="container-fluid">
+            <div id="mySidenav" class="sidenav">
+                <a class="closebtn" (click)="closeNav()">&times;</a>
+
+                <button class="w3-button w3-block w3-left-align w3-def fs18" (click)="showZone()">
+                    <span>Show Zones</span> <i class="fa fa-caret-down pull-right"></i>
+                </button>
+                <div id="showzones" class="w3-hide w3-white w3-card">
+                    <a>
+                        <input class="styled-checkbox" id="styled-checkbox-3" type="checkbox" value="value1" checked>
+                        <label for="styled-checkbox-3" class="fs18">Select List 1</label>
+                    </a>
+                    <a>
+                        <input class="styled-checkbox" id="styled-checkbox-3" type="checkbox" value="value1" checked>
+                        <label for="styled-checkbox-3" class="fs18">Select List 2</label>
+                    </a>
+                </div>
+
+                <button class="w3-button w3-block w3-left-align w3-def fs18" (click)="showWard()">
+                    <span>Show Wards</span> <i class="fa fa-caret-down pull-right"></i>
+                </button>
+                <div id="showwards" class="w3-hide w3-white w3-card">
+                    <a>
+                        <input class="styled-checkbox" id="styled-checkbox-3" type="checkbox" value="value1" checked>
+                        <label for="styled-checkbox-3" class="fs18">Select List 1</label>
+                    </a>
+                    <a>
+                        <input class="styled-checkbox" id="styled-checkbox-3" type="checkbox" value="value1" checked>
+                        <label for="styled-checkbox-3" class="fs18">Select List 2</label>
+                    </a>
+                </div>
+
+                <a>
+                    <input class="styled-checkbox" id="styled-checkbox-1" type="checkbox" value="value1" checked>
+                    <label for="styled-checkbox-1" class="fs18">Select List 1</label>
+                </a>
+                <a>
+                    <input class="styled-checkbox" id="styled-checkbox-2" type="checkbox" value="value1" checked>
+                    <label for="styled-checkbox-2" class="fs18">Select List 2</label>
+                </a>
+                <a>
+                    <input class="styled-checkbox" id="styled-checkbox-3" type="checkbox" value="value1" checked>
+                    <label for="styled-checkbox-3" class="fs18">Select List 3</label>
+                </a>
+                <a>
+                    <input class="styled-checkbox" id="styled-checkbox-4" type="checkbox" value="value1" checked>
+                    <label for="styled-checkbox-4" class="fs18">Select List 4</label>
+                </a>
+            </div>
+            <div>
+                <span style="font-size:30px;cursor:pointer" (click)="openNav()">&#9776;</span>
+            </div>
+        <div class="row mtop20">
+            <div class="col-md-12">
+                <div id="googleMap" class="gmap"></div>
+            </div>
+            <div class="col-md-3">
+                <div class="sidebar">
+                    <ul class="unstyled centered">
+                        <li style="text-align: center;">
+                            <input class="styled-checkbox" id="styled-checkbox-1" type="checkbox" value="value1" checked>
+                            <label for="styled-checkbox-1">Show Zones</label>
+                        </li>
+                        <li style="text-align: center;">
+                            <input class="styled-checkbox" id="styled-checkbox-2" type="checkbox" value="value2" checked>
+                            <label for="styled-checkbox-2">Show Wards</label>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</div> -->
+<div *ngIf="showLoader==true" style="width: 100%;height: 100vh;background: #000;position: absolute;top: 120px;opacity: 0.5;margin:auto;text-align:center;">
+    <img class="loadingimg" style="position: absolute;top: 33%;" src="assets/modules/images/ajax-loader.gif" />
+</div>

@@ -1,0 +1,111 @@
+<div id="homepage">
+    <div class="container-fluid">
+        <div class="row mtop20">
+            <!-- <div class="col-md-12 mtop30">
+                <div class="pull-left">
+                    <button class="btn btn-primary">PDF</button>
+                    <button class="btn btn-primary">EXCEL</button>
+                    <button class="btn btn-primary" (click)="prints()">PRINT</button>
+                </div>
+            </div> -->
+            <div class="col-md-12">
+                <ul class="nav nav-tabs" style="margin-top: 50px;">
+                    <li class="active"><a data-toggle="tab" href="#tab1">Movement Reports</a></li>
+                    <li><a data-toggle="tab" href="#tab2">Trip Report</a></li>
+                    <li><a data-toggle="tab" href="#tab3">Driver Performance report</a></li>
+                </ul>
+            </div>
+            <div class="tab-content">
+                <div id="tab1" class="tab-pane fade in active">
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th>Sr no</th>
+                                <th>Vehicle RTO</th>
+                                <th>Ward No</th>
+                                <th>Driver Name</th>
+                                <th>Vehicle Average</th>
+                                <th>Marks (20)</th>
+                                <th>Maintenance and Servicing Marks (10)</th>
+                                <th>Marks (10)</th>
+                                <th>Attendance</th>
+                                <th>Marks (10)</th>
+                                <th>Late starting status</th>
+                                <th>Marks (5)</th>
+                                <th>Speed Violations</th>
+                                <th>Marks (5)</th>
+                                <th>Total Marks (50)</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>John</td>
+                                <td>Doe</td>
+                                <td>john@example.com</td>
+                                <td>john@example.com</td>
+                                <td>john@example.com</td>
+                                <td>john@example.com</td>
+                                <td>john@example.com</td>
+                                <td>john@example.com</td>
+                                <td>john@example.com</td>
+                                <td>john@example.com</td>
+                                <td>john@example.com</td>
+                                <td>john@example.com</td>
+                                <td>john@example.com</td>
+                                <td>john@example.com</td>
+                                <td>john@example.com</td>
+                            </tr>
+                            <tr>
+                                <td>Mary</td>
+                                <td>Moe</td>
+                                <td>mary@example.com</td>
+                                <td>john@example.com</td>
+                                <td>john@example.com</td>
+                                <td>john@example.com</td>
+                                <td>john@example.com</td>
+                                <td>john@example.com</td>
+                                <td>john@example.com</td>
+                                <td>john@example.com</td>
+                                <td>john@example.com</td>
+                                <td>john@example.com</td>
+                                <td>john@example.com</td>
+                                <td>john@example.com</td>
+                                <td>john@example.com</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div id="tab2" class="tab-pane fade">
+                    <ul class="nav nav-tabs">
+                        <li class="active"><a data-toggle="tab" href="#subtab1">Transfer Station</a></li>
+                        <li><a data-toggle="tab" href="#subtab2">Treatment Plant</a></li>
+                    </ul>
+                    <div class="tab-contant">
+                        <div id="subtab1" class="tab-pane fade in active">
+                            <div class="form-group">
+                                <label for="comment">Vehicle:</label>
+                                <select class="form-control" id="sel1">
+                                    <option>One</option>
+                                    <option>Two</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="comment">Station:</label>
+                                <select class="form-control" id="sel1">
+                                    <option>One</option>
+                                    <option>Two</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div id="subtab2" class="tab-pane fade">
+                            <h2>Any content 2</h2>
+                        </div>
+                    </div>
+                </div>
+                <div id="tab3" class="tab-pane fade">
+                    <h2>Any content 3</h2>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

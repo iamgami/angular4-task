@@ -1,0 +1,98 @@
+<div class="wrapper">
+    <!-- Sidebar Holder -->
+    <nav id="sidebar">
+        <!-- <div class="form-group paddLR10 mtop15">
+            <input type="text" class="form-control" placeholder="Search">
+        </div> -->
+         <!--<div class="form-group paddLR10 mtop15">
+            <input type="text" class="form-control" placeholder="Search">
+        </div>-->
+        <div class="form-group paddLR10 mtop15">
+            <label>Zone</label>
+            <select [(ngModel)]="selectedZone" class="form-control" (ngModelChange)="onSelectZone($event);">
+                <option value="">Select Zone</option>
+                <option *ngFor="let c of getZonesList" [ngValue]="c.id" >{{c.name}}</option>
+            </select>
+        </div>
+        <div class="form-group paddLR10 mtop15">
+            <label>Ward</label>
+            <select [(ngModel)]="selectedWard" class="form-control" (ngModelChange)="onSelectWard($event);">
+                <option value="">Select Ward</option>
+                <option *ngFor="let c of getWardsList" [ngValue]="c.id">{{c.name}}</option>
+            </select>
+        </div>
+        <!--<div class="form-group paddLR10 mtop15">
+            <label>Vehicle</label>
+            <select [(ngModel)]="selectedVehicleImei" class="form-control" (ngModelChange)="onSelectvehicle($event)">
+                <option value="">Select Vehicle</option>
+                <option *ngFor="let c of getVehiclesList" [ngValue]="c">{{c.registration_number}}</option>
+            </select>
+        </div>-->
+
+        <div class="form-group paddLR10 mtop15 text-center">
+            <button (click)="loadRwaReport();" class="btn btn-primary">Submit</button>
+        </div>
+    </nav>
+
+    <!-- Page Content Holder -->
+    <div id="content">
+
+
+        <nav class="navbar navbar-default">
+            <div>
+                <div class="navbar-header">
+                    <button type="button" id="sidebarCollapseopen" class="btn navbar-btn">
+                        <i class="glyphicon glyphicon-align-left"></i>
+                    </button>
+                    <button type="button" id="sidebarCollapseclose" class="btn navbar-btn">
+                        <i class="glyphicon glyphicon-align-left"></i>
+                    </button>
+                </div>
+                <!--<div class="btn-group pull-right mtop8">
+                    <button type="button" class="btn btn-primary">PDF</button>
+                    <button type="button" class="btn btn-primary">EXCEL</button>
+                    <button type="button" class="btn btn-primary" (click)="print();">PRINT</button>
+                </div>-->
+            </div>
+        </nav>
+         <div *ngIf="showLoader==true" style="width: 80%;height: 100vh;background: #000;position: absolute;top: 120px;opacity: 0.5;margin:auto;text-align:center;">
+                <img class="loadingimg" src="assets/modules/images/ajax-loader.gif" />
+          </div>
+       <div class="container-fluid">
+
+            <div>
+                <p class="titleheading">RWA/Bulk Generator</p>
+            </div>
+
+            <div id="print-section">
+                <div class="table-responsive">
+                    <table class="table table-bordered" id="datatable">
+                        <thead>
+                            <tr>
+                                <th>S.No.</th>
+                                <th>Zone No.</th>
+                                <th>Ward No.</th>
+                                <th>Name</th>
+                                <th>Coordinates</th>
+                                <th>Added Date</th>
+                                <th>Modify Date</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr *ngFor="let rwa of getRwaList;let i=index;" >
+                                <td>{{i+1}}</td>
+                                <td>{{rwa.zone_number}}</td>
+                                <td>{{rwa.ward_number}}</td>
+                                <td>{{rwa.name}}</td>
+                                <td>{{rwa.lat}} {{rwa.long}}</td>
+                                <td>{{rwa.created_at}} </td>
+                                <td>{{rwa.updated_at}}</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+       </div>
+    </div>
+</div>
+
